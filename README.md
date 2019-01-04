@@ -17,14 +17,14 @@ dependencies {
       app:emojiIndicator="@mipmap/ic_launcher"//可选
       app:emojiIndicatorHover="@mipmap/ic_launcher"//可选
     /> 
-//可选，如果不用此控件，需自行监听实现，具体参考EmoniEdittext。
+//可选，如果不用此控件，需自行监听实现，具体参考[EmoniEdittext](https://github.com/OneGreenHand/Emoji/blob/master/library/src/main/java/com/green/hand/library/EmoniEdittext.java)。
 
     <com.green.hand.library.EmoniEdittext
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
     />
 **3、在页面中使用**
-实现表情框Item单击事件（emojiBoard为EmojiBoard控件，textEditor为Edittext控件）
+实现表情框Item单击事件（emojiBoard为[EmojiBoard](https://github.com/OneGreenHand/Emoji/blob/master/library/src/main/java/com/green/hand/library/EmojiBoard.java)控件，textEditor为Edittext控件）
 
     emojiBoard.setItemClickListener(new EmojiBoard.OnEmojiItemClickListener() {//表情框点击事件
      @Override
