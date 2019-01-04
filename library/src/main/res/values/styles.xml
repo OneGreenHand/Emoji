@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmojiBoard">
+        <attr name="deleteIcon" format="reference" />
+        <attr name="emojiIndicator" format="reference" />
+        <attr name="emojiIndicatorHover" format="reference" />
+    </declare-styleable>
+</resources>

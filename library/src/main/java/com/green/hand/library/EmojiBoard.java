@@ -1,6 +1,7 @@
-package com.goume.xuanfu.emoji;
+package com.green.hand.library;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -20,25 +21,37 @@ import java.util.List;
 
 public class EmojiBoard extends LinearLayout {
 
-    private static final String TAG = "EmojiPanel";
-    private static final int ROW = 3;
-    private static final int COLUMN = 7;
-
     private ViewPager viewPager;
     private Indicator indicator;
-
     private OnEmojiItemClickListener listener;
+    private int deleteIcon = -1;//删除按钮
+    private int emojiIndicator = -1;//选中小圆点图片
+    private int emojiIndicatorHover = -1;//未选中小圆点图片
+    private Context context;
 
     public interface OnEmojiItemClickListener {
         void onClick(String code);
     }
 
+    public EmojiBoard(Context context) {
+        super(context);
+        this.context = context;
+        initView(null);
+    }
+
+    public EmojiBoard(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.context = context;
+        initView(attrs);
+    }
+
     public EmojiBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
+        initView(attrs);
         LayoutInflater.from(getContext()).inflate(R.layout.input_emoji_board, this);
         viewPager = findViewById(R.id.view_pager);
         indicator = new Indicator((ViewGroup) findViewById(R.id.indicator));
-
         viewPager.setAdapter(new EmojiPageAdapter());
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -47,7 +60,6 @@ public class EmojiBoard extends LinearLayout {
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "pos = " + position);
                 indicator.setSelected(position);
             }
 
@@ -57,12 +69,18 @@ public class EmojiBoard extends LinearLayout {
         });
     }
 
-    public void setItemClickListener(OnEmojiItemClickListener l) {
-        listener = l;
+    private void initView(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.EmojiBoard);
+            deleteIcon = array.getResourceId(R.styleable.EmojiBoard_deleteIcon, -1);
+            emojiIndicator = array.getResourceId(R.styleable.EmojiBoard_emojiIndicator, -1);
+            emojiIndicatorHover = array.getResourceId(R.styleable.EmojiBoard_emojiIndicatorHover, -1);
+            array.recycle();
+        }
     }
 
-    private int getPageSize() {
-        return EmojiManager.getSize() / (ROW * COLUMN - 1);
+    public void setItemClickListener(OnEmojiItemClickListener listener) {
+        this.listener = listener;
     }
 
     private class EmojiPageAdapter extends PagerAdapter {
@@ -70,23 +88,25 @@ public class EmojiBoard extends LinearLayout {
         private ArrayList<View> viewContainer = new ArrayList<>();
 
         public EmojiPageAdapter() {
-            int pageSize = getPageSize();
+            int pageSize = EmojiUtil.getPageSize();
             for (int i = 0; i < pageSize; i++) {
                 GridView gridView = (GridView) LayoutInflater.from(getContext()).inflate(R.layout.input_emoji_gridview, null);
-                EmojiGridAdapter adapter = new EmojiGridAdapter();
-                int start = i * (ROW * COLUMN - 1);
+                EmojiGridAdapter adapter = new EmojiGridAdapter(context);
+                int start = i * (EmojiUtil.ROW * EmojiUtil.COLUMN - 1);
                 int count;
                 if (i < pageSize) {
-                    count = (ROW * COLUMN - 1);
+                    count = (EmojiUtil.ROW * EmojiUtil.COLUMN - 1);
                 } else {
                     count = EmojiManager.getSize() - start;
                 }
-
                 if (isInEditMode()) {
                     return;
                 }
                 final List<Integer> list = EmojiManager.getResourceList(start, count);
-                list.add(R.mipmap.input_emoji_delete);
+                if (deleteIcon == -1)
+                    list.add(R.drawable.input_emoji_delete);
+                else
+                    list.add(deleteIcon);
                 adapter.setResList(list);
                 gridView.setAdapter(adapter);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,10 +114,10 @@ public class EmojiBoard extends LinearLayout {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         if (listener != null) {
                             String code = "";
-                            if (position == ROW * COLUMN - 1) {
+                            if (position == EmojiUtil.ROW * EmojiUtil.COLUMN - 1) {
                                 code = "/DEL";
                             } else {
-                                int pos = viewPager.getCurrentItem() * (ROW * COLUMN - 1) + position;
+                                int pos = viewPager.getCurrentItem() * (EmojiUtil.ROW * EmojiUtil.COLUMN - 1) + position;
                                 char[] chars = Character.toChars(EmojiManager.getCode(pos));
                                 for (int i = 0; i < chars.length; i++) {
                                     code += Character.toString(chars[i]);
@@ -132,42 +152,6 @@ public class EmojiBoard extends LinearLayout {
             container.removeView((View) object);
         }
 
-        private class EmojiGridAdapter extends BaseAdapter {
-            List<Integer> resList;
-
-            public void setResList(List<Integer> list) {
-                resList = list;
-            }
-
-            @Override
-            public int getCount() {
-                return resList.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return position;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                ViewGroup view;
-                if (convertView == null) {
-                    view = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.input_emoji_griditem, null);
-                    view.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, CommonUtil.dip2px(40)));
-                } else {
-                    view = (ViewGroup) convertView;
-                }
-                ImageView image = (ImageView) view.findViewById(R.id.image);
-                image.setImageResource(resList.get(position));
-                return view;
-            }
-        }
     }
 
     private class Indicator {
@@ -176,17 +160,23 @@ public class EmojiBoard extends LinearLayout {
 
         public Indicator(ViewGroup root) {
             rootView = root;
-            int pageSize = getPageSize();
+            int pageSize = EmojiUtil.getPageSize();
             for (int i = 0; i < pageSize; i++) {
                 ImageView imageView = new ImageView(getContext());
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                int px = CommonUtil.dip2px(4);
+                int px = (int) (4 * context.getResources().getDisplayMetrics().density + 0.5f);
                 params.setMargins(px, 0, px, 0);
                 imageView.setLayoutParams(params);
                 if (i == 0) {
-                    imageView.setImageResource(R.mipmap.input_emoji_indicator_hover);
+                    if (emojiIndicatorHover == -1)
+                        imageView.setImageResource(R.drawable.input_emoji_indicator_hover);
+                    else
+                        imageView.setImageResource(emojiIndicatorHover);
                 } else {
-                    imageView.setImageResource(R.mipmap.input_emoji_indicator);
+                    if (emojiIndicator == -1)
+                        imageView.setImageResource(R.drawable.input_emoji_indicator);
+                    else
+                        imageView.setImageResource(emojiIndicator);
                 }
                 imageList.add(imageView);
                 rootView.addView(imageView);
@@ -196,11 +186,24 @@ public class EmojiBoard extends LinearLayout {
         public void setSelected(int position) {
             for (int i = 0; i < imageList.size(); i++) {
                 if (i != position) {
-                    imageList.get(i).setImageResource(R.mipmap.input_emoji_indicator);
+                    if (emojiIndicator == -1)
+                        imageList.get(i).setImageResource(R.drawable.input_emoji_indicator);
+                    else
+                        imageList.get(i).setImageResource(emojiIndicator);
                 } else {
-                    imageList.get(i).setImageResource(R.mipmap.input_emoji_indicator_hover);
+                    if (emojiIndicatorHover == -1)
+                        imageList.get(i).setImageResource(R.drawable.input_emoji_indicator_hover);
+                    else
+                        imageList.get(i).setImageResource(emojiIndicatorHover);
                 }
             }
         }
+    }
+
+    /**
+     * 是否显示表情框
+     */
+    public void showBoard() {
+        setVisibility(getVisibility() == VISIBLE ? GONE : VISIBLE);
     }
 }

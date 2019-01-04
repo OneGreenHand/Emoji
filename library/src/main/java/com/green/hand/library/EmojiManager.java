@@ -1,4 +1,4 @@
-package com.goume.xuanfu.emoji;
+package com.green.hand.library;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,8 +18,6 @@ import java.util.List;
 
 public class EmojiManager {
 
-    private static final String TAG = "EmojiManager";
-
     private static Context gContext;
     private static ArrayList<Integer> emojiCodeList = new ArrayList<>();
     private static ArrayList<Integer> emojiResourceList = new ArrayList<>();
@@ -33,13 +31,17 @@ public class EmojiManager {
             array.recycle();
             throw new IndexOutOfBoundsException("Code and resource are not match in Emoji xml.");
         }
-
         for (int i = 0; i < codes.length; i++) {
             emojiCodeList.add(codes[i]);
             emojiResourceList.add(array.getResourceId(i, -1));
         }
         array.recycle();
     }
+
+//    public static int dip2px(float dpValue) {
+//        float scale = gContext.getResources().getDisplayMetrics().density;
+//        return (int) (dpValue * scale + 0.5f);
+//    }
 
     public static int getSize() {
         return emojiCodeList.size();
@@ -66,10 +68,8 @@ public class EmojiManager {
         if (text == null) {
             return "";
         }
-
         final char[] chars = text.toCharArray();
         final SpannableStringBuilder ssb = new SpannableStringBuilder(text);
-
         int codePoint;
         boolean isSurrogatePair;
         for (int i = 0; i < chars.length; i++) {
@@ -86,7 +86,6 @@ public class EmojiManager {
                 codePoint = (int) chars[i];
                 isSurrogatePair = false;
             }
-
             if (emojiCodeList.contains(codePoint)) {
                 Bitmap bitmap = BitmapFactory.decodeResource(gContext.getResources(), getResourceByCode(codePoint));
                 BitmapDrawable bmpDrawable = new BitmapDrawable(gContext.getResources(), bitmap);

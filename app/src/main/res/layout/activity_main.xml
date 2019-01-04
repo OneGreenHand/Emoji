@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
@@ -7,14 +8,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:textSize="18sp"
         android:id="@+id/message_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
         android:background="#ffffff"
-        android:text="这里是内容区域" />
+        android:text="这里是内容显示区域"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,15 +28,15 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:orientation="horizontal"
-            android:paddingBottom="2dp"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="2dp">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <EditText
+                <com.green.hand.library.EmoniEdittext
                     android:id="@+id/input_editor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,12 +51,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
+                    android:padding="10dp"
                     android:src="@drawable/rc_emoji_selector" />
             </RelativeLayout>
 
             <TextView
-
                 android:id="@+id/input_send"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -70,11 +70,19 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <com.goume.xuanfu.emoji.EmojiBoard
+        <com.green.hand.library.EmojiBoard
             android:id="@+id/input_emoji_board"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
+        <!--<com.green.hand.library.EmojiBoard-->
+        <!--android:id="@+id/input_emoji_board"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:deleteIcon="@mipmap/ic_launcher"-->
+        <!--app:emojiIndicator="@mipmap/ic_launcher"-->
+        <!--app:emojiIndicatorHover="@mipmap/ic_launcher"-->
+        <!--android:visibility="gone" />-->
     </LinearLayout>
 
 </LinearLayout>
