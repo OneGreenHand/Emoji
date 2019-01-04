@@ -32,10 +32,10 @@ dependencies {
         if (code.equals("/DEL")) {//点击了删除图标
            textEditor.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
         } else {//插入表情
-        　textEditor.getText().insert(textEditor.getSelectionStart(), code);
-    　   }
-    　 }
-    　});
+    textEditor.getText().insert(textEditor.getSelectionStart(), code);
+    }
+    }
+    });
 
 **4、其他方法**  
 EmojiBoard　--->　showBoard()　//显示隐藏表情框  
