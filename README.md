@@ -2,7 +2,7 @@
 ![效果图](https://github.com/OneGreenHand/Emoji/blob/master/img/emoji.gif?raw=true.gif)  
 ## 如何使用
 dependencies {  
-　`implementation 'com.github.OneGreenHand:Emoji:v1.0'`   
+　`implementation 'com.github.OneGreenHand:Emoji:v1.1'`   
 }  
 **1、初始化**  
 在Application中进行初始化  
@@ -43,5 +43,7 @@ EmoniEdittext　--->　isEnable(view)　//用于未输入文字时，其他按�
 ### 属性说明  
 deleteIcon：删除icon  
 emojiIndicator：底部未选中icon   
-emojiIndicatorHover：底部选中icon   
+emojiIndicatorHover：底部选中icon  
+
+已知问题:部分机型显示还是为安卓样式，介意者慎用！
 #### **欢迎Start或提issues！**
