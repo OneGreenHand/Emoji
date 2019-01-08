@@ -5,12 +5,10 @@ import android.content.res.TypedArray;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -91,19 +89,16 @@ public class EmojiBoard extends LinearLayout {
             int pageSize = EmojiUtil.getPageSize();
             for (int i = 0; i < pageSize; i++) {
                 GridView gridView = (GridView) LayoutInflater.from(getContext()).inflate(R.layout.input_emoji_gridview, null);
-                EmojiGridAdapter adapter = new EmojiGridAdapter(context);
-                int start = i * (EmojiUtil.ROW * EmojiUtil.COLUMN - 1);
-                int count;
-                if (i < pageSize) {
-                    count = (EmojiUtil.ROW * EmojiUtil.COLUMN - 1);
-                } else {
-                    count = EmojiManager.getSize() - start;
-                }
+                final EmojiGridAdapter adapter = new EmojiGridAdapter(context);
+                int start = i * (EmojiUtil.getOnePageSize());
+                int endIndex = (i + 1) * (EmojiUtil.getOnePageSize());
+                if (EmojiManager.getSize() < endIndex)//最后一页数量不够填充一页
+                    endIndex = EmojiManager.getSize();
                 if (isInEditMode()) {
                     return;
                 }
-                final List<Integer> list = EmojiManager.getResourceList(start, count);
-                if (deleteIcon == -1)
+                final List<Integer> list = EmojiManager.getResourceList(start, endIndex);//获取每一页的数据量
+                if (deleteIcon == -1)//每页数据后面添加一个删除按钮
                     list.add(R.drawable.input_emoji_delete);
                 else
                     list.add(deleteIcon);
@@ -114,10 +109,10 @@ public class EmojiBoard extends LinearLayout {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         if (listener != null) {
                             String code = "";
-                            if (position == EmojiUtil.ROW * EmojiUtil.COLUMN - 1) {
+                            if (position == adapter.getCount() - 1) {//点击的为每页最后一个数据，即为删除按钮
                                 code = "/DEL";
                             } else {
-                                int pos = viewPager.getCurrentItem() * (EmojiUtil.ROW * EmojiUtil.COLUMN - 1) + position;
+                                int pos = viewPager.getCurrentItem() * (EmojiUtil.getOnePageSize()) + position;
                                 char[] chars = Character.toChars(EmojiManager.getCode(pos));
                                 for (int i = 0; i < chars.length; i++) {
                                     code += Character.toString(chars[i]);
@@ -154,6 +149,9 @@ public class EmojiBoard extends LinearLayout {
 
     }
 
+    /**
+     * 底部小圆点
+     */
     private class Indicator {
         private ViewGroup rootView;
         private ArrayList<ImageView> imageList = new ArrayList<>();
@@ -161,10 +159,10 @@ public class EmojiBoard extends LinearLayout {
         public Indicator(ViewGroup root) {
             rootView = root;
             int pageSize = EmojiUtil.getPageSize();
-            for (int i = 0; i < pageSize; i++) {
+            for (int i = 0; i < pageSize; i++) {//多少页数据就有多少个小圆点
                 ImageView imageView = new ImageView(getContext());
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                int px = (int) (4 * context.getResources().getDisplayMetrics().density + 0.5f);
+                int px = (int) (4 * context.getResources().getDisplayMetrics().density + 0.5f);//设置间距
                 params.setMargins(px, 0, px, 0);
                 imageView.setLayoutParams(params);
                 if (i == 0) {

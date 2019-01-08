@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {//监听返回键，如果表情框已显示就隐藏
         if (emojiBoard.getVisibility() == VISIBLE) {
             showEmojiBoard();
+        } else {
+            super.onBackPressed();
         }
     }
 

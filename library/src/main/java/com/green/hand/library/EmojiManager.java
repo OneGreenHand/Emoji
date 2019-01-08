@@ -19,15 +19,15 @@ import java.util.List;
 public class EmojiManager {
 
     private static Context gContext;
-    private static ArrayList<Integer> emojiCodeList = new ArrayList<>();
-    private static ArrayList<Integer> emojiResourceList = new ArrayList<>();
+    private static ArrayList<Integer> emojiCodeList = new ArrayList<>();//编码
+    private static ArrayList<Integer> emojiResourceList = new ArrayList<>();//资源文件
 
     public static void init(Context context) {
         gContext = context.getApplicationContext();
         Resources resources = gContext.getResources();
         int[] codes = resources.getIntArray(R.array.emoji_code_list);
         TypedArray array = resources.obtainTypedArray(R.array.emoji_res_list);
-        if (codes.length != array.length()) {
+        if (codes.length != array.length()) {//数据长度必须一致
             array.recycle();
             throw new IndexOutOfBoundsException("Code and resource are not match in Emoji xml.");
         }
@@ -43,16 +43,16 @@ public class EmojiManager {
 //        return (int) (dpValue * scale + 0.5f);
 //    }
 
-    public static int getSize() {
+    public static int getSize() {//得到总数据
         return emojiCodeList.size();
     }
 
-    public static int getCode(int position) {
+    public static int getCode(int position) {//得到编码
         return emojiCodeList.get(position);
     }
 
-    public static List<Integer> getResourceList(int start, int count) {
-        return new ArrayList<>(emojiResourceList.subList(start, start + count));
+    public static List<Integer> getResourceList(int start, int count) {//得到每页的数据
+        return new ArrayList<>(emojiResourceList.subList(start, count));
     }
 
     private static int getResourceByCode(int code) throws Resources.NotFoundException {
