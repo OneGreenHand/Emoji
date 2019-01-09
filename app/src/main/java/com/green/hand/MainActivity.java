@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.green.hand.emoji.R;
 import com.green.hand.library.EmojiBoard;
-import com.green.hand.library.EmoniEdittext;
+import com.green.hand.library.EmojiTextview;
+import com.green.hand.library.EmojiEdittext;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ import static android.view.View.VISIBLE;
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.input_editor)
-    EmoniEdittext textEditor;
+    EmojiEdittext textEditor;
     @Bind(R.id.input_emoji_btn)
     ImageView emojiBtn;
     @Bind(R.id.input_send)
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.input_emoji_board)
     EmojiBoard emojiBoard;
     @Bind(R.id.message_content)
-    TextView messageContent;
+    EmojiTextview messageContent;
     private String messages = "";//显示内容
 
     @Override

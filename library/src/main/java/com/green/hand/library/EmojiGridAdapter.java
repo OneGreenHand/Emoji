@@ -11,13 +11,6 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-/**
- * @author OneGreenHand
- * @package com.green.hand.library
- * @fileName EmojiGridAdapter
- * @data on 2019/1/3 16:53
- * @describe
- */
 public class EmojiGridAdapter extends BaseAdapter {
     private Context context;
     List<Integer> resList;
