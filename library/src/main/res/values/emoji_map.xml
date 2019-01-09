@@ -39,7 +39,7 @@
         <item>@drawable/u1f60e</item>
         <item>@drawable/u1f634</item>
         <item>@drawable/u1f632</item>
-        <item>@drawable/u1f635</item>
+        <item>@drawable/u1f62e</item>
         <item>@drawable/u1f608</item>
         <item>@drawable/u1f47f</item>
         <item>@drawable/u1f62f</item>
@@ -105,6 +105,7 @@
         <item>@drawable/u1f3c0</item>
         <item>@drawable/u26bd</item>
         <item>@drawable/u1f3c2</item>
+        <item>@drawable/u1f6b2</item>
         <item>@drawable/u1f3a4</item>
         <item>@drawable/u1f3b5</item>
         <item>@drawable/u1f3b2</item>
@@ -170,7 +171,7 @@
         <item>0x1f60e</item>
         <item>0x1f634</item>
         <item>0x1f632</item>
-        <item>0x1f635</item>
+        <item>0x1f62e</item>
         <item>0x1f608</item>
         <item>0x1f47f</item>
         <item>0x1f62f</item>
@@ -236,6 +237,7 @@
         <item>0x1f3c0</item>
         <item>0x26bd</item>
         <item>0x1f3c2</item>
+        <item>0x1f6b2</item>
         <item>0x1f3a4</item>
         <item>0x1f3b5</item>
         <item>0x1f3b2</item>
@@ -260,5 +262,5 @@
         <item>0x1f48a</item>
         <item>0x1f680</item>
         <item>0x1f30f</item>
-        </integer-array>
+    </integer-array>
 </resources>

@@ -7,7 +7,7 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <com.green.hand.library.EmojiTextview
+    <com.green.hand.library.widget.EmojiTextview
         android:id="@+id/message_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <com.green.hand.library.EmojiEdittext
+                <com.green.hand.library.widget.EmojiEdittext
                     android:id="@+id/input_editor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <com.green.hand.library.EmojiBoard
+        <com.green.hand.library.widget.EmojiBoard
             android:id="@+id/input_emoji_board"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

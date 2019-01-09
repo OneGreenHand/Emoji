@@ -1,4 +1,4 @@
-package com.green.hand.library;
+package com.green.hand.library.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.green.hand.library.EmojiGridAdapter;
+import com.green.hand.library.EmojiManager;
+import com.green.hand.library.EmojiUtil;
+import com.green.hand.library.R;
 
 import java.util.ArrayList;
 import java.util.List;

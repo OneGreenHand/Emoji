@@ -1,4 +1,4 @@
-package com.green.hand.library;
+package com.green.hand.library.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.green.hand.library.EmojiManager;
+import com.green.hand.library.EmojiconHandler;
+import com.green.hand.library.R;
 
 public class EmojiEdittext extends EditText {
     private Context context;

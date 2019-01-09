@@ -49,7 +49,7 @@ public class EmojiconHandler {
         sEmojisMap.put(0x1f60e, R.drawable.u1f60e);
         sEmojisMap.put(0x1f634, R.drawable.u1f634);
         sEmojisMap.put(0x1f632, R.drawable.u1f632);
-        sEmojisMap.put(0x1f635, R.drawable.u1f635);
+        sEmojisMap.put(0x1f62e, R.drawable.u1f62e);
         sEmojisMap.put(0x1f608, R.drawable.u1f608);
         sEmojisMap.put(0x1f47f, R.drawable.u1f47f);
         sEmojisMap.put(0x1f62f, R.drawable.u1f62f);
@@ -115,6 +115,7 @@ public class EmojiconHandler {
         sEmojisMap.put(0x1f3c0, R.drawable.u1f3c0);
         sEmojisMap.put(0x26bd, R.drawable.u26bd);
         sEmojisMap.put(0x1f3c2, R.drawable.u1f3c2);
+        sEmojisMap.put(0x1f6b2, R.drawable.u1f6b2);
         sEmojisMap.put(0x1f3a4, R.drawable.u1f3a4);
         sEmojisMap.put(0x1f3b5, R.drawable.u1f3b5);
         sEmojisMap.put(0x1f3b2, R.drawable.u1f3b2);

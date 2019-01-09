@@ -1,4 +1,4 @@
-package com.green.hand.library;
+package com.green.hand.library.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +7,9 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
+
+import com.green.hand.library.EmojiconHandler;
+import com.green.hand.library.R;
 
 public class EmojiTextview extends AppCompatTextView {
     private int mEmojiconSize;

@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.green.hand.emoji.R;
-import com.green.hand.library.EmojiBoard;
-import com.green.hand.library.EmojiTextview;
-import com.green.hand.library.EmojiEdittext;
+import com.green.hand.library.widget.EmojiBoard;
+import com.green.hand.library.widget.EmojiTextview;
+import com.green.hand.library.widget.EmojiEdittext;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
