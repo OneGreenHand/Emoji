@@ -9,7 +9,7 @@ dependencies {
 `EmojiManager.init(this)`  
 **2、在布局中应用**  
 
-    <com.green.hand.library.EmojiBoard
+    <com.green.hand.library.widget.EmojiBoard
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:deleteIcon="@mipmap/ic_launcher"//可选
@@ -18,13 +18,13 @@ dependencies {
     /> 
 *可选，如果不用此控件，需自行监听实现，具体参考[EmoniEdittext](https://github.com/OneGreenHand/Emoji/blob/master/library/src/main/java/com/green/hand/library/EmoniEdittext.java)。
 
-    <com.green.hand.library.EmojiEdittext
+    <com.green.hand.library.widget.EmojiEdittext
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
     />
 //兼容emoji显示的textview
 
-     <com.green.hand.library.EmojiTextview
+     <com.green.hand.library.widget.EmojiTextview
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
      />
