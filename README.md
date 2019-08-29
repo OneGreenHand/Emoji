@@ -1,8 +1,8 @@
 # 效果图
 ![效果图](https://github.com/OneGreenHand/Emoji/blob/master/img/emoji.gif?raw=true.gif)  
 ## 如何使用
-dependencies {  
-　`implementation 'com.github.OneGreenHand:Emoji:v1.2.2'`
+dependencies {
+　`implementation 'com.github.OneGreenHand:Emoji:v1.2.2'`  
 }  
 **1、初始化**  
 在Application中进行初始化  
