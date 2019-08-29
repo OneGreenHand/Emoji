@@ -9,46 +9,50 @@ import android.widget.TextView;
 
 import com.green.hand.emoji.R;
 import com.green.hand.library.widget.EmojiBoard;
-import com.green.hand.library.widget.EmojiTextview;
 import com.green.hand.library.widget.EmojiEdittext;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.green.hand.library.widget.EmojiTextview;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @Bind(R.id.input_editor)
-    EmojiEdittext textEditor;
-    @Bind(R.id.input_emoji_btn)
-    ImageView emojiBtn;
-    @Bind(R.id.input_send)
-    TextView sendBtn;
-    @Bind(R.id.input_emoji_board)
-    EmojiBoard emojiBoard;
-    @Bind(R.id.message_content)
-    EmojiTextview messageContent;
+    private EmojiEdittext textEditor;
+    private ImageView emojiBtn;
+    private TextView sendBtn;
+    private EmojiBoard emojiBoard;
+    private EmojiTextview messageContent;
     private String messages = "";//显示内容
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        finID();
         textEditor.isEnable(sendBtn);//这里是为了让未输入内容的时候不让点击
         emojiBoard.setItemClickListener(new EmojiBoard.OnEmojiItemClickListener() {//表情框点击事件
             @Override
             public void onClick(String code) {
-                if (code.equals("/DEL")) {//点击了删除图标
+                if (code.equals("/DEL")) {//删除图标
                     textEditor.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 } else {//插入表情
                     textEditor.getText().insert(textEditor.getSelectionStart(), code);
                 }
             }
         });
+    }
+
+    /**
+     * findViewById
+     */
+    private void finID() {
+        textEditor = (EmojiEdittext) findViewById(R.id.input_editor);
+        emojiBtn = (ImageView) findViewById(R.id.input_emoji_btn);
+        sendBtn = (TextView) findViewById(R.id.input_send);
+        emojiBoard = (EmojiBoard) findViewById(R.id.input_emoji_board);
+        messageContent = (EmojiTextview) findViewById(R.id.message_content);
+        emojiBtn.setOnClickListener(this);
+        sendBtn.setOnClickListener(this);
     }
 
 
@@ -61,8 +65,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.input_emoji_btn, R.id.input_send})
-    public void onViewClicked(View view) {
+    /**
+     * 展开or隐藏表情框
+     */
+    public void showEmojiBoard() {
+        emojiBtn.setSelected(emojiBoard.getVisibility() == GONE);//设置图片选中效果
+        emojiBoard.showBoard();//是否显示表情框
+    }
+
+    @Override
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.input_emoji_btn://表情按钮
                 showEmojiBoard();
@@ -73,10 +85,5 @@ public class MainActivity extends AppCompatActivity {
                 textEditor.getText().clear();
                 break;
         }
-    }
-
-    public void showEmojiBoard() {
-        emojiBtn.setSelected(emojiBoard.getVisibility() == GONE);//设置图片选中效果
-        emojiBoard.showBoard();//是否显示表情框
     }
 }

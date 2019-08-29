@@ -15,7 +15,7 @@
         <item>@drawable/u1f601</item>
         <item>@drawable/u1f614</item>
         <item>@drawable/u1f60c</item>
-        <item>@drawable/u1f612</item>
+        <item>@drawable/u1f12</item>
         <item>@drawable/u1f61f</item>
         <item>@drawable/u1f61e</item>
         <item>@drawable/u1f623</item>
@@ -45,6 +45,7 @@
         <item>@drawable/u1f62f</item>
         <item>@drawable/u1f62c</item>
         <item>@drawable/u1f615</item>
+        <item>@drawable/u1f635</item>
         <item>@drawable/u1f636</item>
         <item>@drawable/u1f607</item>
         <item>@drawable/u1f60f</item>
@@ -54,6 +55,7 @@
         <item>@drawable/u1f64a</item>
         <item>@drawable/u1f47d</item>
         <item>@drawable/u1f4a9</item>
+        <item>@drawable/u2764</item>
         <item>@drawable/u1f494</item>
         <item>@drawable/u1f525</item>
         <item>@drawable/u1f4a2</item>
@@ -78,6 +80,7 @@
         <item>@drawable/u1f64f</item>
         <item>@drawable/u261d</item>
         <item>@drawable/u1f44f</item>
+        <item>@drawable/u1f91d</item>
         <item>@drawable/u1f4aa</item>
         <item>@drawable/u1f46a</item>
         <item>@drawable/u1f46b</item>
@@ -147,7 +150,7 @@
         <item>0x1f601</item>
         <item>0x1f614</item>
         <item>0x1f60c</item>
-        <item>0x1f612</item>
+        <item>0x1ff12</item>
         <item>0x1f61f</item>
         <item>0x1f61e</item>
         <item>0x1f623</item>
@@ -177,6 +180,7 @@
         <item>0x1f62f</item>
         <item>0x1f62c</item>
         <item>0x1f615</item>
+        <item>0x1f635</item>
         <item>0x1f636</item>
         <item>0x1f607</item>
         <item>0x1f60f</item>
@@ -186,6 +190,7 @@
         <item>0x1f64a</item>
         <item>0x1f47d</item>
         <item>0x1f4a9</item>
+        <item>0x2764</item>
         <item>0x1f494</item>
         <item>0x1f525</item>
         <item>0x1f4a2</item>
@@ -210,6 +215,7 @@
         <item>0x1f64f</item>
         <item>0x261d</item>
         <item>0x1f44f</item>
+        <item>0x1f91d</item>
         <item>0x1f4aa</item>
         <item>0x1f46a</item>
         <item>0x1f46b</item>

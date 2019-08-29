@@ -1,88 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.green.hand.MainActivity">
 
     <com.green.hand.library.widget.EmojiTextview
         android:id="@+id/message_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="#ffffff"
+        android:padding="10dp"
         android:text="这里是内容显示区域"
         android:textSize="18sp" />
 
     <LinearLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="2dp">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <RelativeLayout
+            <com.green.hand.library.widget.EmojiEdittext
+                android:id="@+id/input_editor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:hint="快来和小伙伴聊天吧"
+                android:maxLines="4"
+                android:paddingLeft="5dp"
+                android:textSize="12sp" />
 
-                <com.green.hand.library.widget.EmojiEdittext
-                    android:id="@+id/input_editor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/input_emoji_btn"
-                    android:hint="快来和小伙伴聊天吧"
-                    android:maxLines="4"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:id="@+id/input_emoji_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="10dp"
-                    android:src="@drawable/rc_emoji_selector" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/input_send"
+            <ImageView
+                android:id="@+id/input_emoji_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/input_send_button"
-                android:enabled="false"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="发送"
-                android:textColor="#ffffff"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:src="@drawable/rc_emoji_selector" />
         </LinearLayout>
 
-        <com.green.hand.library.widget.EmojiBoard
-            android:id="@+id/input_emoji_board"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-        <!--<com.green.hand.library.EmojiBoard-->
-        <!--android:id="@+id/input_emoji_board"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:deleteIcon="@mipmap/ic_launcher"-->
-        <!--app:emojiIndicator="@mipmap/ic_launcher"-->
-        <!--app:emojiIndicatorHover="@mipmap/ic_launcher"-->
-        <!--android:visibility="gone" />-->
+        <TextView
+            android:id="@+id/input_send"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/input_send_button"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
     </LinearLayout>
+
+    <com.green.hand.library.widget.EmojiBoard
+        android:id="@+id/input_emoji_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+    <!--其他参数示例-->
+    <!--<com.green.hand.library.EmojiBoard-->
+    <!--android:id="@+id/input_emoji_board"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:deleteIcon="@mipmap/ic_launcher"-->
+    <!--app:emojiIndicator="@mipmap/ic_launcher"-->
+    <!--app:emojiIndicatorHover="@mipmap/ic_launcher"-->
+    <!--android:visibility="gone" />-->
 
 </LinearLayout>

@@ -10,6 +10,6 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        EmojiManager.init(this);
+        EmojiManager.init(this);//初始化
     }
 }
