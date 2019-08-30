@@ -67,6 +67,8 @@ emojiIndicatorHover：底部选中icon
 ### **补充说明** 
 如果仍然出现显示为☐或者乱码情况，可尝试使用官方的 [EmojiCompat](https://www.jianshu.com/p/2a26502db899) 支持库或使用[emojicon](https://github.com/rockerhieu/emojicon)三方库
 ### 版本日志
+ + v1.2.3
+    - GridView变更为Recycleview、资源优化、升级版本
  + v1.2.2
     - 新增、替换表情、去除ButterKnife依赖
  + v1.2.1
