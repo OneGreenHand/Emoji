@@ -3,7 +3,7 @@
 ## 如何使用
 ```java
 dependencies {  
-   　implementation 'com.github.OneGreenHand:Emoji:v1.2.2'
+   　implementation 'com.github.OneGreenHand:Emoji:v1.2.3'
 }
 ```
 
