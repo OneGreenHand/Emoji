@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,7 +95,8 @@ public class EmojiBoard extends LinearLayout {
         public EmojiPageAdapter() {
             int pageSize = EmojiUtil.getPageSize();
             for (int i = 0; i < pageSize; i++) {
-                GridView gridView = (GridView) LayoutInflater.from(getContext()).inflate(R.layout.input_emoji_gridview, null);
+                RecyclerView recyclerView = new RecyclerView(context);
+                recyclerView.setLayoutManager(new GridLayoutManager(context, 7));
                 final EmojiGridAdapter adapter = new EmojiGridAdapter(context);
                 int start = i * (EmojiUtil.getOnePageSize());
                 int endIndex = (i + 1) * (EmojiUtil.getOnePageSize());
@@ -108,13 +111,13 @@ public class EmojiBoard extends LinearLayout {
                 else
                     list.add(deleteIcon);
                 adapter.setResList(list);
-                gridView.setAdapter(adapter);
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                recyclerView.setAdapter(adapter);
+                adapter.setOnEmojiClick(new EmojiGridAdapter.EmojiClick() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onClick(int position) {
                         if (listener != null) {
                             String code = "";
-                            if (position == adapter.getCount() - 1) {//点击的为每页最后一个数据，即为删除按钮
+                            if (position == adapter.getItemCount() - 1) {//点击的为每页最后一个数据，即为删除按钮
                                 code = "/DEL";
                             } else {
                                 int pos = viewPager.getCurrentItem() * (EmojiUtil.getOnePageSize()) + position;
@@ -127,7 +130,7 @@ public class EmojiBoard extends LinearLayout {
                         }
                     }
                 });
-                viewContainer.add(gridView);
+                viewContainer.add(recyclerView);
             }
         }
 

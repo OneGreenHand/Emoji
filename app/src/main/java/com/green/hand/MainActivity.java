@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import com.green.hand.library.widget.EmojiTextview;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private EmojiEdittext textEditor;
     private ImageView emojiBtn;
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         emojiBtn.setOnClickListener(this);
         sendBtn.setOnClickListener(this);
     }
-
 
     @Override
     public void onBackPressed() {//监听返回键，如果表情框已显示就隐藏
