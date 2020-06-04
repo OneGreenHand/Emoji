@@ -1,7 +1,7 @@
 package com.green.hand;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
      * findViewById
      */
     private void finID() {
-        textEditor = (EmojiEdittext) findViewById(R.id.input_editor);
-        emojiBtn = (ImageView) findViewById(R.id.input_emoji_btn);
-        sendBtn = (TextView) findViewById(R.id.input_send);
-        emojiBoard = (EmojiBoard) findViewById(R.id.input_emoji_board);
-        messageContent = (EmojiTextview) findViewById(R.id.message_content);
+        textEditor = findViewById(R.id.input_editor);
+        emojiBtn = findViewById(R.id.input_emoji_btn);
+        sendBtn = findViewById(R.id.input_send);
+        emojiBoard = findViewById(R.id.input_emoji_board);
+        messageContent = findViewById(R.id.message_content);
         emojiBtn.setOnClickListener(this);
         sendBtn.setOnClickListener(this);
     }

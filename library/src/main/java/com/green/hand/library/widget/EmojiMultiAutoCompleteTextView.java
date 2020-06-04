@@ -2,7 +2,7 @@ package com.green.hand.library.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 
@@ -17,8 +17,7 @@ public class EmojiMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTe
 
     public EmojiMultiAutoCompleteTextView(Context context) {
         super(context);
-        mEmojiconSize = (int) getTextSize();
-        mEmojiconTextSize = (int) getTextSize();
+        init(null);
     }
 
     public EmojiMultiAutoCompleteTextView(Context context, AttributeSet attrs) {
@@ -32,12 +31,15 @@ public class EmojiMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTe
     }
 
     private void init(AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
-        mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
-        mEmojiconAlignment = a.getInt(R.styleable.Emojicon_emojiconAlignment, DynamicDrawableSpan.ALIGN_BASELINE);
-        mUseSystemDefault = a.getBoolean(R.styleable.Emojicon_emojiconUseSystemDefault, false);
-        a.recycle();
+        mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
+        if (attrs != null) {
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
+            mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
+            mEmojiconAlignment = a.getInt(R.styleable.Emojicon_emojiconAlignment, DynamicDrawableSpan.ALIGN_BASELINE);
+            mUseSystemDefault = a.getBoolean(R.styleable.Emojicon_emojiconUseSystemDefault, false);
+            a.recycle();
+        }
         setText(getText());
     }
 
@@ -51,7 +53,6 @@ public class EmojiMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTe
      */
     public void setEmojiconSize(int pixels) {
         mEmojiconSize = pixels;
-
         updateText();
     }
 

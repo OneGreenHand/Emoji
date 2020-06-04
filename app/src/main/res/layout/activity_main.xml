@@ -16,9 +16,9 @@
         android:textSize="18sp" />
 
     <LinearLayout
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -34,8 +34,7 @@
                 android:layout_weight="1"
                 android:hint="快来和小伙伴聊天吧"
                 android:maxLines="4"
-                android:paddingLeft="5dp"
-                android:textSize="12sp" />
+                android:paddingLeft="5dp" />
 
             <ImageView
                 android:id="@+id/input_emoji_btn"

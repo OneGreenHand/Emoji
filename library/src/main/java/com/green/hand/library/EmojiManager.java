@@ -18,9 +18,9 @@ import java.util.List;
 
 public class EmojiManager {
 
-    private static Context gContext;
-    private static ArrayList<Integer> emojiCodeList = new ArrayList<>();//编码
-    private static ArrayList<Integer> emojiResourceList = new ArrayList<>();//资源文件
+    public static Context gContext;
+    private static List<Integer> emojiCodeList = new ArrayList<>();//编码
+    private static List<Integer> emojiResourceList = new ArrayList<>();//资源文件
 
     public static void init(Context context) {
         gContext = context.getApplicationContext();
@@ -38,11 +38,6 @@ public class EmojiManager {
         array.recycle();
     }
 
-//    public static int dip2px(float dpValue) {
-//        float scale = gContext.getResources().getDisplayMetrics().density;
-//        return (int) (dpValue * scale + 0.5f);
-//    }
-
     public static int getSize() {//得到总数据
         return emojiCodeList.size();
     }
@@ -57,17 +52,15 @@ public class EmojiManager {
 
     private static int getResourceByCode(int code) throws Resources.NotFoundException {
         for (int i = 0; i < emojiCodeList.size(); i++) {
-            if (emojiCodeList.get(i) == code) {
+            if (emojiCodeList.get(i) == code)
                 return emojiResourceList.get(i);
-            }
         }
         throw new Resources.NotFoundException("Unsupported emoji code <" + code + ">, which is not in Emoji list.");
     }
 
     public static CharSequence parse(String text, float textSize) {
-        if (text == null) {
+        if (text == null)
             return "";
-        }
         final char[] chars = text.toCharArray();
         final SpannableStringBuilder ssb = new SpannableStringBuilder(text);
         int codePoint;
@@ -104,10 +97,8 @@ public class EmojiManager {
         }
 
         @Override
-        public void draw(Canvas canvas, CharSequence text, int start, int end, float x,
-                         int top, int y, int bottom, Paint paint) {
+        public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
             Drawable b = getDrawable();
-            Paint.FontMetricsInt fm = paint.getFontMetricsInt();
             int transY = ((bottom - top) - getDrawable().getBounds().bottom) / 2 + top;
             canvas.save();
             canvas.translate(x, transY);

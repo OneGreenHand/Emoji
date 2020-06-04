@@ -15,7 +15,6 @@ import com.green.hand.library.EmojiconHandler;
 import com.green.hand.library.R;
 
 public class EmojiEdittext extends EditText {
-    private Context context;
     private View view = null;
     private int mEmojiconSize;
     private int mEmojiconAlignment;
@@ -24,37 +23,29 @@ public class EmojiEdittext extends EditText {
 
     public EmojiEdittext(Context context) {
         super(context);
-        this.context = context;
-        initView(context, null);
+        initView(null);
     }
 
     public EmojiEdittext(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
-        initView(context, attrs);
+        initView(attrs);
     }
 
     public EmojiEdittext(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
-        initView(context, attrs);
+        initView(attrs);
     }
 
-    public EmojiEdittext(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.context = context;
-        initView(context, attrs);
-    }
-
-    private void initView(Context context, AttributeSet attrs) {
+    private void initView(AttributeSet attrs) {
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
-        mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
-        mEmojiconAlignment = a.getInt(R.styleable.Emojicon_emojiconAlignment, DynamicDrawableSpan.ALIGN_BASELINE);
-        mUseSystemDefault = a.getBoolean(R.styleable.Emojicon_emojiconUseSystemDefault, false);
-        a.recycle();
-        mEmojiconTextSize = (int) getTextSize();
+        if (attrs != null) {
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
+            mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
+            mEmojiconAlignment = a.getInt(R.styleable.Emojicon_emojiconAlignment, DynamicDrawableSpan.ALIGN_BASELINE);
+            mUseSystemDefault = a.getBoolean(R.styleable.Emojicon_emojiconUseSystemDefault, false);
+            a.recycle();
+        }
         setText(getText());
         addTextChangedListener(textWatcher);
     }
